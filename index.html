@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fever Music Growth Engines — Interview Materials</title>
+  <meta name="description" content="Systems-driven marketing & partnerships plan for Fever — interactive market map + deck." />
+  <link rel="icon" href="assets/favicon.png">
+  <style>
+    :root { --bg:#0b0b0c; --card:#151517; --text:#f6f6f7; --muted:#b7b7bb; --brand:#ff6b3d; }
+    *{box-sizing:border-box} body{margin:0;font:16px/1.5 Inter,system-ui,Segoe UI,Arial;background:var(--bg);color:var(--text);}
+    a{color:var(--brand);text-decoration:none} a:hover{text-decoration:underline}
+    .wrap{max-width:1080px;margin:auto;padding:24px}
+    .hero{display:grid;gap:8px;margin:28px 0 18px}
+    .title{font-size:clamp(28px,4.5vw,40px);font-weight:800;letter-spacing:.2px}
+    .subtitle{color:var(--muted)}
+    .cta{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0 4px}
+    .btn{background:var(--brand);color:#000;padding:12px 16px;border-radius:10px;font-weight:700}
+    .btn.secondary{background:#26262a;color:var(--text);border:1px solid #2f2f33}
+    .grid{display:grid;gap:16px;margin:18px 0}
+    @media(min-width:880px){ .grid{grid-template-columns:1.2fr 1fr} }
+    .card{background:var(--card);border:1px solid #26262a;border-radius:16px;padding:18px}
+    h2{margin:0 0 10px;font-size:22px}
+    .muted{color:var(--muted)}
+    iframe{width:100%;height:520px;border:0;border-radius:12px;background:#0f0f11}
+    footer{margin:28px 0 12px;color:var(--muted);font-size:14px}
+    .tag{display:inline-block;padding:2px 8px;border-radius:999px;background:#26262a;color:var(--muted);font-size:12px;margin-right:6px}
+    .list{margin:6px 0 0;padding-left:18px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <span class="tag">Interview materials</span>
+      <div class="title">Fever Music Growth Engines</div>
+      <div class="subtitle">Systems-driven marketing & partnerships plan — interactive market map + presentation deck.</div>
+      <div class="cta">
+        <a class="btn" href="#map">Open Interactive Map</a>
+        <a class="btn secondary" href="#deck">View the Deck (PDF)</a>
+      </div>
+    </section>
+
+    <section id="map" class="grid">
+      <div class="card">
+        <h2>Interactive Market Opportunity Map</h2>
+        <p class="muted">Shows <strong>where / what / when</strong> to launch music experiences using search interest, event density, pricing, and genre diversity.</p>
+        <!-- Replace with your hosted map URL -->
+        <iframe title="Music Market Opportunity Map" src="https://beatifyaudio.github.io/fever-opportunity-map/fever_market_opportunity_map.html/"></iframe>
+        <p class="muted" style="margin-top:8px">
+          If the embed is blocked, <a href="https://beatifyaudio.github.io/fever-opportunity-map/fever_market_opportunity_map.html" target="_blank" rel="noopener">open the map in a new tab →</a>
+        </p>
+      </div>
+      <div class="card">
+        <h2>How the Score Works</h2>
+        <ul class="list">
+          <li><strong>Event Density</strong> (40%) — local activity & supply</li>
+          <li><strong>Price Index</strong> (30%) — spending power & yield</li>
+          <li><strong>Search Interest</strong> (20%) — demand trend</li>
+          <li><strong>Genre Diversity</strong> (10%) — cultural breadth</li>
+        </ul>
+        <p class="muted">Composite readiness index guides artist, brand, and venue activation.</p>
+      </div>
+    </section>
+
+    <section id="deck" class="grid">
+      <div class="card">
+        <h2>Presentation Deck</h2>
+        <p class="muted">Download or view the full marketing & partnerships plan.</p>
+        <iframe title="Fever Growth Engines Deck" src="assets/deck.pdf#view=FitH"></iframe>
+        <p class="muted" style="margin-top:8px"><a href="assets/deck.pdf" download>Download the deck (PDF)</a></p>
+      </div>
+      <div class="card">
+        <h2>What’s Inside</h2>
+        <ul class="list">
+          <li>Intelligence → Partner → Audience → Experience → Feedback engines</li>
+          <li>PESO activation within partner workflows</li>
+          <li>KPIs: partner growth, ticket sales, engagement, ROI</li>
+          <li>Roadmap: Build → Scale → Optimize → Expand</li>
+        </ul>
+        <p class="muted">Contact: <a href="mailto:your@email.com">your@email.com</a></p>
+      </div>
+    </section>
+
+    <footer>© <span id="y"></span> Your Name — for Fever interview use only.</footer>
+  </div>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
