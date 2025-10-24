@@ -42,6 +42,7 @@
       </div>
     </section>
 
+    <!-- MAP -->
     <section id="map" class="grid">
       <div class="card">
         <h2>Interactive Market Opportunity Map</h2>
@@ -69,20 +70,22 @@
       </div>
     </section>
 
+    <!-- DECK -->
     <section id="deck" class="grid">
       <div class="card" style="grid-column:1 / -1">
         <h2>Presentation Deck — Fever Music Growth Engines</h2>
-        <p class="muted">Scroll or click through below. If your mobile browser doesn’t support inline PDFs, this will switch to a mobile-friendly viewer.</p>
+        <p class="muted">Scroll or click through below. Viewer switches automatically for mobile reliability.</p>
 
-        <iframe id="deckFrame"
-                title="Fever Growth Engines Deck"
-                style="width:100%; height:800px; border:0; border-radius:12px; background:#0f0f11">
+        <iframe
+          id="deckFrame"
+          title="Fever Growth Engines Deck"
+          style="width:100%; height:800px; border:0; border-radius:12px; background:#0f0f11">
         </iframe>
 
         <p class="muted" style="margin-top:8px">
-          <a href="assets/deck.pdf" target="_blank" rel="noopener">Open full-screen deck →</a>
+          <a href="https://beatifyaudio.github.io/fever-growth-site/assets/deck.pdf" target="_blank" rel="noopener">Open full-screen deck →</a>
           &nbsp;|&nbsp;
-          <a href="assets/deck.pdf" download>Download PDF</a>
+          <a href="https://beatifyaudio.github.io/fever-growth-site/assets/deck.pdf" download>Download PDF</a>
         </p>
       </div>
 
@@ -104,17 +107,18 @@
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Absolute URL to your hosted PDF (for Google Viewer on mobile)
-    const pdfUrl = 'https://beatifyaudio.github.io/fever-growth-site/assets/deck.pdf';
+    // URLs to the deck
+    const pdfRelative = 'assets/deck.pdf'; // native viewer on desktop
+    const pdfAbsolute = 'https://beatifyaudio.github.io/fever-growth-site/assets/deck.pdf';
+    // jsDelivr mirror (fixes mobile/CORS inline rendering)
+    const pdfCdn = 'https://cdn.jsdelivr.net/gh/BEATIFYAUDIO/fever-growth-site/assets/deck.pdf';
+
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     const frame = document.getElementById('deckFrame');
 
-    // Basic mobile detection
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-    // Desktop: native PDF viewer; Mobile: Google Docs Viewer
     frame.src = isMobile
-      ? 'https://docs.google.com/gview?embedded=1&url=' + encodeURIComponent(pdfUrl)
-      : 'assets/deck.pdf#view=FitH';
+      ? 'https://docs.google.com/gview?embedded=1&url=' + encodeURIComponent(pdfCdn)
+      : pdfRelative + '#view=FitH';
   </script>
 </body>
 </html>
