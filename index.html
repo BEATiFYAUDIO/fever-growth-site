@@ -44,12 +44,18 @@
       <div class="card">
         <h2>Interactive Market Opportunity Map</h2>
         <p class="muted">Shows <strong>where / what / when</strong> to launch music experiences using search interest, event density, pricing, and genre diversity.</p>
-        <!-- Replace with your hosted map URL -->
-        <iframe title="Music Market Opportunity Map" src="https://beatifyaudio.github.io/fever-opportunity-map/fever_market_opportunity_map.html/"></iframe>
+
+        <!-- Fixed URL: removed trailing slash after .html -->
+        <iframe
+          title="Music Market Opportunity Map"
+          src="https://beatifyaudio.github.io/fever-opportunity-map/fever_market_opportunity_map.html">
+        </iframe>
+
         <p class="muted" style="margin-top:8px">
           If the embed is blocked, <a href="https://beatifyaudio.github.io/fever-opportunity-map/fever_market_opportunity_map.html" target="_blank" rel="noopener">open the map in a new tab →</a>
         </p>
       </div>
+
       <div class="card">
         <h2>How the Score Works</h2>
         <ul class="list">
@@ -63,12 +69,21 @@
     </section>
 
     <section id="deck" class="grid">
-      <div class="card">
-        <h2>Presentation Deck</h2>
-        <p class="muted">Download or view the full marketing & partnerships plan.</p>
-        <iframe title="Fever Growth Engines Deck" src="assets/deck.pdf#view=FitH"></iframe>
-        <p class="muted" style="margin-top:8px"><a href="assets/deck.pdf" download>Download the deck (PDF)</a></p>
+      <!-- Full-width deck viewer on all breakpoints -->
+      <div class="card" style="grid-column:1 / -1">
+        <h2>Presentation Deck — Fever Music Growth Engines</h2>
+        <p class="muted">Scroll or click through below. Open full-screen if preferred.</p>
+
+        <!-- Taller embedded PDF for better slide experience -->
+        <iframe title="Fever Growth Engines Deck" src="assets/deck.pdf#view=FitH" style="height:800px"></iframe>
+
+        <p class="muted" style="margin-top:8px">
+          <a href="assets/deck.pdf" target="_blank" rel="noopener">Open full-screen deck →</a>
+          &nbsp;|&nbsp;
+          <a href="assets/deck.pdf" download>Download PDF</a>
+        </p>
       </div>
+
       <div class="card">
         <h2>What’s Inside</h2>
         <ul class="list">
