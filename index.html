@@ -8,8 +8,10 @@
   <link rel="icon" href="assets/favicon.png">
   <style>
     :root { --bg:#0b0b0c; --card:#151517; --text:#f6f6f7; --muted:#b7b7bb; --brand:#ff6b3d; }
-    *{box-sizing:border-box} body{margin:0;font:16px/1.5 Inter,system-ui,Segoe UI,Arial;background:var(--bg);color:var(--text);}
-    a{color:var(--brand);text-decoration:none} a:hover{text-decoration:underline}
+    *{box-sizing:border-box}
+    body{margin:0;font:16px/1.5 Inter,system-ui,Segoe UI,Arial;background:var(--bg);color:var(--text);}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
     .wrap{max-width:1080px;margin:auto;padding:24px}
     .hero{display:grid;gap:8px;margin:28px 0 18px}
     .title{font-size:clamp(28px,4.5vw,40px);font-weight:800;letter-spacing:.2px}
@@ -23,7 +25,7 @@
     h2{margin:0 0 10px;font-size:22px}
     .muted{color:var(--muted)}
     iframe{width:100%;height:520px;border:0;border-radius:12px;background:#0f0f11}
-    footer{margin:28px 0 12px;color:var(--muted);font-size:14px}
+    footer{margin:28px 0 12px;color:var(--muted);font-size:14px;text-align:center}
     .tag{display:inline-block;padding:2px 8px;border-radius:999px;background:#26262a;color:var(--muted);font-size:12px;margin-right:6px}
     .list{margin:6px 0 0;padding-left:18px}
   </style>
@@ -45,7 +47,6 @@
         <h2>Interactive Market Opportunity Map</h2>
         <p class="muted">Shows <strong>where / what / when</strong> to launch music experiences using search interest, event density, pricing, and genre diversity.</p>
 
-        <!-- Fixed URL: removed trailing slash after .html -->
         <iframe
           title="Music Market Opportunity Map"
           src="https://beatifyaudio.github.io/fever-opportunity-map/fever_market_opportunity_map.html">
@@ -69,13 +70,14 @@
     </section>
 
     <section id="deck" class="grid">
-      <!-- Full-width deck viewer on all breakpoints -->
       <div class="card" style="grid-column:1 / -1">
         <h2>Presentation Deck — Fever Music Growth Engines</h2>
-        <p class="muted">Scroll or click through below. Open full-screen if preferred.</p>
+        <p class="muted">Scroll or click through below. If your mobile browser doesn’t support inline PDFs, this will switch to a mobile-friendly viewer.</p>
 
-        <!-- Taller embedded PDF for better slide experience -->
-        <iframe title="Fever Growth Engines Deck" src="assets/deck.pdf#view=FitH" style="height:800px"></iframe>
+        <iframe id="deckFrame"
+                title="Fever Growth Engines Deck"
+                style="width:100%; height:800px; border:0; border-radius:12px; background:#0f0f11">
+        </iframe>
 
         <p class="muted" style="margin-top:8px">
           <a href="assets/deck.pdf" target="_blank" rel="noopener">Open full-screen deck →</a>
@@ -96,8 +98,23 @@
       </div>
     </section>
 
-    <footer>© <span id="y"></span> Your Name — for Fever interview use only.</footer>
+    <footer>© <span id="y"></span> Darryl Hillock — for Fever interview use only.</footer>
   </div>
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Absolute URL to your hosted PDF (for Google Viewer on mobile)
+    const pdfUrl = 'https://beatifyaudio.github.io/fever-growth-site/assets/deck.pdf';
+    const frame = document.getElementById('deckFrame');
+
+    // Basic mobile detection
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    // Desktop: native PDF viewer; Mobile: Google Docs Viewer
+    frame.src = isMobile
+      ? 'https://docs.google.com/gview?embedded=1&url=' + encodeURIComponent(pdfUrl)
+      : 'assets/deck.pdf#view=FitH';
+  </script>
 </body>
 </html>
