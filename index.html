@@ -57,7 +57,30 @@
       #deckFrame{height:85vh;}
     }
 
-    /* Image styling for new layers card */
+    /* HOW section styles */
+    .pills{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}
+    .pill{background:#26262a;color:var(--muted);border:1px solid var(--stroke);padding:6px 10px;border-radius:999px;font-size:12px}
+    .how-grid{display:grid;gap:16px}
+    @media(min-width:880px){ .how-grid{grid-template-columns:1fr 1fr} }
+    details.how-card{
+      background:var(--card);border:1px solid var(--cardStroke);border-radius:16px;padding:16px;
+      transition:border-color .15s ease, box-shadow .15s ease;
+    }
+    details.how-card[open]{box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    details.how-card summary{
+      cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px
+    }
+    details.how-card summary::-webkit-details-marker{display:none}
+    .kicker{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+    .h2ish{font-size:18px;font-weight:700;margin:6px 0}
+    .sum{color:var(--muted);margin:0 0 8px}
+    .cols{display:grid;gap:12px}
+    @media(min-width:720px){ .cols{grid-template-columns:1fr 1fr} }
+    .list-tight{margin:6px 0 0;padding-left:18px}
+    .badge{font-size:11px;background:#26262a;border:1px solid var(--stroke);color:var(--muted);
+           padding:2px 8px;border-radius:999px;margin-left:8px}
+
+    /* Layers image */
     .layers-img{
       width:100%;
       max-width:1000px;
@@ -100,7 +123,7 @@
         </p>
       </div>
 
-      <!-- Replaced "How the Score Works" with Layers image -->
+      <!-- Layers image (replaces “How the Score Works”) -->
       <div class="card" style="text-align:center;">
         <h2>Layers of the Opportunity Map</h2>
         <p class="muted" style="margin-top:-4px;margin-bottom:12px;">
@@ -113,6 +136,202 @@
         <p class="muted" style="margin-top:12px;">
           Each layer reflects a composite measurement of demand, readiness, and momentum across the Fever ecosystem.
         </p>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS (kept IN FULL) -->
+    <section id="how" class="grid" style="grid-template-columns:1fr;">
+      <div class="card" style="grid-column:1 / -1">
+        <h2>How the Engines & Layers Work</h2>
+        <div class="pills">
+          <a class="pill" href="#how-intel">Intelligence</a>
+          <a class="pill" href="#how-partner">Partner</a>
+          <a class="pill" href="#how-audience">Audience</a>
+          <a class="pill" href="#how-experience">Experience</a>
+          <a class="pill" href="#how-feedback">Feedback</a>
+          <a class="pill" href="#how-launch">Launch Priority</a>
+        </div>
+
+        <div class="how-grid">
+          <!-- Intelligence -->
+          <details id="how-intel" class="how-card" open>
+            <summary>
+              <div>
+                <div class="kicker">Market Readiness Layer</div>
+                <div class="h2ish">Intelligence Engine <span class="badge">Opportunity Score</span></div>
+                <p class="sum">Combines demand, price, supply, and culture to find where Fever can thrive.</p>
+              </div>
+              <span>▾</span>
+            </summary>
+            <div class="cols">
+              <div>
+                <strong>Inputs</strong>
+                <ul class="list-tight">
+                  <li>Event density (Ticketmaster)</li>
+                  <li>Avg ticket price (yield)</li>
+                  <li>Search interest (Google Trends)</li>
+                  <li>Genre diversity (breadth)</li>
+                </ul>
+              </div>
+              <div>
+                <strong>Output</strong>
+                <ul class="list-tight">
+                  <li><em>Opportunity Score</em> (0–100) → Readiness Index (0–1)</li>
+                  <li>Feeds the composite Launch Priority</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+
+          <!-- Partner -->
+          <details id="how-partner" class="how-card">
+            <summary>
+              <div>
+                <div class="kicker">Supply Layer</div>
+                <div class="h2ish">Partner Engine <span class="badge">Network Strength</span></div>
+                <p class="sum">Maps venue, promoter, and brand depth to accelerate supply.</p>
+              </div>
+              <span>▾</span>
+            </summary>
+            <div class="cols">
+              <div>
+                <strong>Inputs</strong>
+                <ul class="list-tight">
+                  <li>Venue coverage / active partners</li>
+                  <li>Brand activation depth</li>
+                  <li>Creator/producer density</li>
+                  <li>Cross-sell across cities</li>
+                </ul>
+              </div>
+              <div>
+                <strong>Output</strong>
+                <ul class="list-tight">
+                  <li><em>Partnership Strength Index</em> (future API)</li>
+                  <li>Guides supply-side prioritization</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+
+          <!-- Audience -->
+          <details id="how-audience" class="how-card">
+            <summary>
+              <div>
+                <div class="kicker">Demand Layer</div>
+                <div class="h2ish">Audience Engine <span class="badge">Engagement Momentum</span></div>
+                <p class="sum">Quantifies Fever’s in-app growth loops: referrals, vouchers, loyalty, geo.</p>
+              </div>
+              <span>▾</span>
+            </summary>
+            <div class="cols">
+              <div>
+                <strong>Inputs</strong>
+                <ul class="list-tight">
+                  <li>Referral rate (K-factor)</li>
+                  <li>Voucher redemption lift</li>
+                  <li>Fever Club repeat rate</li>
+                  <li>Geo-offer conversion</li>
+                </ul>
+              </div>
+              <div>
+                <strong>Output</strong>
+                <ul class="list-tight">
+                  <li><em>Engagement Momentum</em> (0–1) — <em>placeholder 0</em> until Fever API</li>
+                  <li>Used in Launch Priority composite</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+
+          <!-- Experience -->
+          <details id="how-experience" class="how-card">
+            <summary>
+              <div>
+                <div class="kicker">Activation Layer</div>
+                <div class="h2ish">Experience Engine <span class="badge">Effectiveness</span></div>
+                <p class="sum">Measures how co-created shows convert to loyalty and revenue.</p>
+              </div>
+              <span>▾</span>
+            </summary>
+            <div class="cols">
+              <div>
+                <strong>Inputs</strong>
+                <ul class="list-tight">
+                  <li># of co-created events</li>
+                  <li>Experience ratings</li>
+                  <li>Brand lift (PR/social)</li>
+                  <li>Ticket conversion</li>
+                </ul>
+              </div>
+              <div>
+                <strong>Output</strong>
+                <ul class="list-tight">
+                  <li><em>Experience Effectiveness Index</em></li>
+                  <li>Feeds retention and ROI views</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+
+          <!-- Feedback -->
+          <details id="how-feedback" class="how-card">
+            <summary>
+              <div>
+                <div class="kicker">Optimization Layer</div>
+                <div class="h2ish">Feedback Engine <span class="badge">Learning Index</span></div>
+                <p class="sum">Closes the loop: partner ROI, audience retention, campaign effectiveness.</p>
+              </div>
+              <span>▾</span>
+            </summary>
+            <div class="cols">
+              <div>
+                <strong>Inputs</strong>
+                <ul class="list-tight">
+                  <li>Partner ROI & renewal</li>
+                  <li>Repeat attendance</li>
+                  <li>PESO campaign KPIs</li>
+                  <li>Insight velocity</li>
+                </ul>
+              </div>
+              <div>
+                <strong>Output</strong>
+                <ul class="list-tight">
+                  <li><em>Learning Index</em> — speed of improvement</li>
+                  <li>Refines next-market playbooks</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+
+          <!-- Launch Priority -->
+          <details id="how-launch" class="how-card">
+            <summary>
+              <div>
+                <div class="kicker">Composite Layer</div>
+                <div class="h2ish">Launch Priority <span class="badge">0.8×Readiness + 0.2×Momentum</span></div>
+                <p class="sum">Ranks cities by both structural opportunity and self-propelling growth.</p>
+              </div>
+              <span>▾</span>
+            </summary>
+            <div class="cols">
+              <div>
+                <strong>Formula</strong>
+                <ul class="list-tight">
+                  <li>Readiness Index (0–1) from Opportunity Score</li>
+                  <li>Engagement Momentum (0–1) from app levers</li>
+                  <li><b>Launch Priority</b> = 0.8×Readiness + 0.2×Momentum</li>
+                </ul>
+              </div>
+              <div>
+                <strong>Usage</strong>
+                <ul class="list-tight">
+                  <li>Choose launch / expand / test cities</li>
+                  <li>Align partners to markets with lift</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+        </div>
       </div>
     </section>
 
