@@ -122,24 +122,37 @@
       <div class="title">Fever Music — Market Growth Strategy & Partner Network</div>
       <div class="subtitle">What you’ll find below:</div>
 
-      <!-- TABLE OF CONTENTS -->
+      <!-- TABLE OF CONTENTS (updated order) -->
       <div class="card toc">
         <h2 style="margin-bottom:6px;">Table of Contents</h2>
         <div class="toc-grid">
-          <a href="#network">Partner Network <small>“People Who Will Pick Up the Phone If I Call”</small></a>
-          <a href="#map">Interactive Market Opportunity Map <small>Launch readiness by city</small></a>
           <a href="#video">Intro / Promo Video <small>Stream with fallbacks</small></a>
+          <a href="#network">My Rolodex <small>People Who Will Pick Up the Phone If I Call</small></a>
+          <a href="#map">Interactive Market Opportunity Map <small>Launch readiness by city</small></a>
           <a href="#how">How the Engines & Layers Work <small>Methodology & scoring</small></a>
           <a href="#deck">Presentation Deck <small>Full slide deck (inline/PDF)</small></a>
         </div>
       </div>
     </section>
 
-    <!-- NETWORK DROPDOWN -->
+    <!-- VIDEO (now first) -->
+    <section id="video" class="grid">
+      <div class="card" style="grid-column:1 / -1">
+        <h2>Intro / Promo Video</h2>
+        <video id="promoVideo" controls preload="metadata" playsinline muted
+               style="width:100%;border-radius:12px;background:#0f0f11"
+               poster="assets/video-poster.jpg">
+          <!-- Source will be attached by JS after HEAD check -->
+        </video>
+        <p class="muted" id="videoLinks" style="margin-top:8px;text-align:center;display:none"></p>
+      </div>
+    </section>
+
+    <!-- ROLodex (renamed & now second) -->
     <section id="network" class="grid" style="grid-template-columns:1fr;">
       <div class="card" style="padding:0;border:none;background:transparent;box-shadow:none">
         <details class="network">
-          <summary>People Who Will Pick Up the Phone If I Call 📞</summary>
+          <summary>My Rolodex — People Who Will Pick Up the Phone If I Call 📞</summary>
 
           <!-- Artists / Producers / Bands -->
           <div class="net-group">
@@ -197,7 +210,7 @@
       </div>
     </section>
 
-    <!-- MAP -->
+    <!-- MAP (third) -->
     <section id="map" class="grid">
       <div class="card">
         <h2>Interactive Market Opportunity Map</h2>
@@ -229,20 +242,7 @@
       </div>
     </section>
 
-    <!-- VIDEO -->
-    <section id="video" class="grid">
-      <div class="card" style="grid-column:1 / -1">
-        <h2>Intro / Promo Video</h2>
-        <video id="promoVideo" controls preload="metadata" playsinline muted
-               style="width:100%;border-radius:12px;background:#0f0f11"
-               poster="assets/video-poster.jpg">
-          <!-- Source will be attached by JS after HEAD check -->
-        </video>
-        <p class="muted" id="videoLinks" style="margin-top:8px;text-align:center;display:none"></p>
-      </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
+    <!-- HOW IT WORKS (fourth) -->
     <section id="how" class="grid" style="grid-template-columns:1fr;">
       <div class="card" style="grid-column:1 / -1">
         <h2>How the Engines & Layers Work</h2>
@@ -438,7 +438,7 @@
       </div>
     </section>
 
-    <!-- DECK -->
+    <!-- DECK (fifth) -->
     <section id="deck" class="grid">
       <div class="card">
         <h2>Presentation Deck — Fever Music Growth Strategy</h2>
@@ -518,9 +518,9 @@
     const videoEl = document.getElementById('promoVideo');
     const linksEl = document.getElementById('videoLinks');
 
-    // Set your video paths here:
-    const VID_REL = 'assets/video.mp4'; // ← update if needed
-    const VID_CDN = 'https://cdn.jsdelivr.net/gh/BEATIFYAUDIO/fever-growth-site/assets/video.mp4'; // optional fallback
+    // ✅ Use movie.mp4 (as requested)
+    const VID_REL = 'assets/movie.mp4';
+    const VID_CDN = 'https://cdn.jsdelivr.net/gh/BEATIFYAUDIO/fever-growth-site/assets/movie.mp4'; // optional fallback
 
     (async () => {
       const relVid = VID_REL + bust;
@@ -542,8 +542,8 @@
           ${VID_CDN ? ' · <a href="'+VID_CDN+'" target="_blank" rel="noopener">Open via CDN</a>' : ''}
         `;
 
-        // Uncomment to attempt silent autoplay on load:
-        // videoEl.muted = true; videoEl.play().catch(()=>{});
+        // Optional: silent autoplay on desktop
+        // if (!/Mobi|Android/i.test(navigator.userAgent)) { videoEl.muted = true; videoEl.play().catch(()=>{}); }
       } else {
         const parent = videoEl.parentElement;
         videoEl.remove();
