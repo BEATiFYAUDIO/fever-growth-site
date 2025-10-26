@@ -111,6 +111,15 @@
     .net-group ul{margin:0 0 10px 18px}
     .note{color:var(--muted);font-size:13px;margin-top:8px}
 
+    /* Video */
+    .movie-player {
+      width:100%;
+      height:auto;
+      border-radius:16px;
+      background:#000;
+      box-shadow:0 10px 40px rgba(0,0,0,.4);
+    }
+
     footer{margin:28px 0 12px;color:var(--muted);font-size:14px;text-align:center}
   </style>
 </head>
@@ -186,6 +195,25 @@
             <p class="note">Note: This page is intentionally set to <em>noindex, nofollow</em> so names won’t appear in search results.</p>
           </div>
         </details>
+      </div>
+    </section>
+
+    <!-- INTRO MOVIE -->
+    <section id="movie" class="grid" style="grid-template-columns:1fr;">
+      <div class="card" style="text-align:center;">
+        <h2>Watch the Growth Engines in Motion</h2>
+        <p class="muted" style="margin-top:-4px;margin-bottom:12px;">
+          A quick visual overview of how Fever’s market intelligence turns into real-world opportunity.
+        </p>
+        <video 
+          class="movie-player" 
+          controls 
+          preload="metadata"
+          poster="assets/movie-poster.jpg">
+          <source src="assets/movie.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <p class="muted" style="margin-top:8px;">Runtime: 0:45 — no sound</p>
       </div>
     </section>
 
