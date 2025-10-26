@@ -122,7 +122,7 @@
       <div class="title">Fever Music — Market Growth Strategy & Partner Network</div>
       <div class="subtitle">What you’ll find below:</div>
 
-      <!-- TABLE OF CONTENTS (updated order) -->
+      <!-- TABLE OF CONTENTS (final order) -->
       <div class="card toc">
         <h2 style="margin-bottom:6px;">Table of Contents</h2>
         <div class="toc-grid">
@@ -135,20 +135,24 @@
       </div>
     </section>
 
-    <!-- VIDEO (now first) -->
+    <!-- VIDEO (first) -->
     <section id="video" class="grid">
       <div class="card" style="grid-column:1 / -1">
         <h2>Intro / Promo Video</h2>
         <video id="promoVideo" controls preload="metadata" playsinline muted
                style="width:100%;border-radius:12px;background:#0f0f11"
                poster="assets/video-poster.jpg">
-          <!-- Source will be attached by JS after HEAD check -->
+          <source src="assets/movie.mp4" type="video/mp4">
         </video>
-        <p class="muted" id="videoLinks" style="margin-top:8px;text-align:center;display:none"></p>
+        <p class="muted" style="margin-top:8px;text-align:center">
+          <a href="assets/movie.mp4" target="_blank" rel="noopener">Open local file</a>
+          &nbsp;·&nbsp;
+          <a href="https://cdn.jsdelivr.net/gh/BEATIFYAUDIO/fever-growth-site/assets/movie.mp4" target="_blank" rel="noopener">Open via CDN</a>
+        </p>
       </div>
     </section>
 
-    <!-- ROLodex (renamed & now second) -->
+    <!-- ROLodex (second) -->
     <section id="network" class="grid" style="grid-template-columns:1fr;">
       <div class="card" style="padding:0;border:none;background:transparent;box-shadow:none">
         <details class="network">
@@ -242,7 +246,7 @@
       </div>
     </section>
 
-    <!-- HOW IT WORKS (fourth) -->
+    <!-- HOW IT WORKS (fourth, full details) -->
     <section id="how" class="grid" style="grid-template-columns:1fr;">
       <div class="card" style="grid-column:1 / -1">
         <h2>How the Engines & Layers Work</h2>
@@ -442,16 +446,22 @@
     <section id="deck" class="grid">
       <div class="card">
         <h2>Presentation Deck — Fever Music Growth Strategy</h2>
-        <p class="muted">Scroll or click through below. On phones we use a PDF.js viewer for perfect inline rendering.</p>
+        <p class="muted">This uses the official PDF.js viewer, linked directly to the CDN copy for reliability.</p>
 
-        <iframe id="deckFrame" title="Fever Growth Deck"></iframe>
+        <iframe
+          id="deckFrame"
+          title="Fever Growth Deck (PDF.js)"
+          style="width:100%; height:800px; border:0; border-radius:12px; background:#0f0f11"
+          src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FBEATIFYAUDIO%2Ffever-growth-site%2Fassets%2Fdeck.pdf#zoom=page-fit&pagemode=none">
+        </iframe>
 
         <p class="muted" style="margin-top:8px;text-align:center">
           <a href="assets/deck.pdf" target="_blank" rel="noopener">Open local</a>
           &nbsp;|&nbsp;
           <a href="https://cdn.jsdelivr.net/gh/BEATIFYAUDIO/fever-growth-site/assets/deck.pdf" target="_blank" rel="noopener">Open via CDN</a>
           &nbsp;|&nbsp;
-          <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FBEATIFYAUDIO%2Ffever-growth-site%2Fassets%2Fdeck.pdf" target="_blank" rel="noopener">Open in PDF.js</a>
+          <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FBEATIFYAUDIO%2Ffever-growth-site%2Fassets%2Fdeck.pdf#zoom=page-fit&pagemode=none"
+             target="_blank" rel="noopener">Open in PDF.js</a>
         </p>
       </div>
 
@@ -469,94 +479,7 @@
   </div>
 
   <script>
-    // Year
     document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Helpers
-    const bust = `?v=${Date.now()}`;
-    async function urlOk(url){
-      try { const r = await fetch(url, { method: 'HEAD', cache: 'no-store' }); return r.ok; }
-      catch { return false; }
-    }
-
-    // ---------- PDF handling ----------
-    const frame = document.getElementById('deckFrame');
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-    const PDF_REL = 'assets/deck.pdf';
-    const PDF_CDN = 'https://cdn.jsdelivr.net/gh/BEATIFYAUDIO/fever-growth-site/assets/deck.pdf';
-    const PDFJS   = 'https://mozilla.github.io/pdf.js/web/viewer.html?file=';
-
-    (async () => {
-      const relURL = PDF_REL + bust;
-      const cdnURL = PDF_CDN + bust;
-
-      let pdfChosen = null;
-      if (await urlOk(relURL))      pdfChosen = relURL;
-      else if (await urlOk(cdnURL)) pdfChosen = cdnURL;
-
-      if (pdfChosen && isMobile)      frame.src = PDFJS + encodeURIComponent(pdfChosen) + '#zoom=page-fit&pagemode=none';
-      else if (pdfChosen)             frame.src = pdfChosen + '#view=FitH';
-      else {
-        const card = frame.parentElement;
-        frame.remove();
-        const div = document.createElement('div');
-        div.className = 'muted';
-        div.style.padding = '12px';
-        div.innerHTML = `
-          <p><strong>Couldn’t load the deck inline.</strong></p>
-          <p>Try these links:
-            <a href="${PDF_REL}" target="_blank" rel="noopener">Open local</a> ·
-            <a href="${PDF_CDN}" target="_blank" rel="noopener">Open via CDN</a> ·
-            <a href="${PDFJS + encodeURIComponent(PDF_CDN)}" target="_blank" rel="noopener">Open in PDF.js</a>
-          </p>`;
-        card.appendChild(div);
-      }
-    })();
-
-    // ---------- VIDEO handling ----------
-    const videoEl = document.getElementById('promoVideo');
-    const linksEl = document.getElementById('videoLinks');
-
-    // ✅ Use movie.mp4 (as requested)
-    const VID_REL = 'assets/movie.mp4';
-    const VID_CDN = 'https://cdn.jsdelivr.net/gh/BEATIFYAUDIO/fever-growth-site/assets/movie.mp4'; // optional fallback
-
-    (async () => {
-      const relVid = VID_REL + bust;
-      const cdnVid = VID_CDN + bust;
-
-      let vidChosen = null;
-      if (await urlOk(relVid)) vidChosen = relVid;
-      else if (VID_CDN && await urlOk(cdnVid)) vidChosen = cdnVid;
-
-      if (vidChosen) {
-        const src = document.createElement('source');
-        src.src = vidChosen;
-        src.type = 'video/mp4';
-        videoEl.appendChild(src);
-
-        linksEl.style.display = 'block';
-        linksEl.innerHTML = `
-          <a href="${VID_REL}" target="_blank" rel="noopener">Open local file</a>
-          ${VID_CDN ? ' · <a href="'+VID_CDN+'" target="_blank" rel="noopener">Open via CDN</a>' : ''}
-        `;
-
-        // Optional: silent autoplay on desktop
-        // if (!/Mobi|Android/i.test(navigator.userAgent)) { videoEl.muted = true; videoEl.play().catch(()=>{}); }
-      } else {
-        const parent = videoEl.parentElement;
-        videoEl.remove();
-        const msg = document.createElement('div');
-        msg.className = 'muted';
-        msg.innerHTML = `
-          <p><strong>Video unavailable.</strong></p>
-          <p>Check the file path and case:
-            <code>${VID_REL}</code>
-            ${VID_CDN ? ' or <code>'+VID_CDN+'</code>' : ''}</p>`;
-        parent.appendChild(msg);
-      }
-    })();
   </script>
 </body>
 </html>
